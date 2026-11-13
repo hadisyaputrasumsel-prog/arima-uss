@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Run package discovery now that runtime environment is available
+php artisan package:discover --ansi || true
+
 # Ensure storage symlink exists
 php artisan storage:link --force || true
 

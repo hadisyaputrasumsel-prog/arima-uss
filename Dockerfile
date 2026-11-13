@@ -1,5 +1,5 @@
-# Use official PHP 8.3 Apache image
-FROM php:8.3-apache
+# Use official PHP 8.4 Apache image (Laravel dependencies require PHP >= 8.4.1)
+FROM php:8.4-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -37,8 +37,8 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html
 
-# Install composer dependencies (optimized for production)
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Install composer dependencies (optimized, no dev, no scripts during build)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 # Set permissions for storage and bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
