@@ -49,6 +49,7 @@ class FinalReportController extends Controller
             'realisasi_lain_lain' => 'required|numeric|min:0',
             'kendala_rekomendasi' => 'nullable|string|max:2000',
             'file_laporan_akhir' => 'required|file|mimes:pdf|max:20480', // max 20MB
+            'file_sptb' => 'nullable|file|mimes:pdf|max:15360',
         ]);
 
         $totalRealisasi = $validated['realisasi_honorarium']
@@ -63,6 +64,10 @@ class FinalReportController extends Controller
 
         if ($request->hasFile('file_laporan_akhir')) {
             $validated['file_laporan_akhir'] = $request->file('file_laporan_akhir')->store('final_reports/' . $proposal->id, 'public');
+        }
+
+        if ($request->hasFile('file_sptb')) {
+            $validated['file_sptb'] = $request->file('file_sptb')->store('final_reports/' . $proposal->id, 'public');
         }
 
         FinalReport::create($validated);
@@ -150,5 +155,15 @@ class FinalReportController extends Controller
     {
         $proposal->load(['scheme', 'user', 'outputs']);
         return view('final_reports.print_validasi', compact('proposal', 'report'));
+    }
+
+    // Print / Generate Lembar SPTB Akhir (100%)
+    public function printSptb(Proposal $proposal)
+    {
+        $proposal->load(['scheme', 'user', 'latestFinalReport', 'contract']);
+        $totalDana = $proposal->dana_disetujui ?? $proposal->total_dana_usulan;
+        $report = $proposal->latestFinalReport;
+
+        return view('final_reports.print_sptb', compact('proposal', 'report', 'totalDana'));
     }
 }

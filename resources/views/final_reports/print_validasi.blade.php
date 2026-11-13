@@ -22,9 +22,13 @@
 
     <div class="max-w-4xl mx-auto bg-white p-8 sm:p-12 shadow-md border border-slate-200">
         <!-- Header Kop -->
-        <div class="text-center pb-4 border-b-2 border-slate-900 mb-6 font-sans">
-            <h2 class="text-xl font-bold tracking-tight">UNIVERSITAS SUMATERA SELATAN</h2>
-            <h3 class="text-sm font-bold uppercase text-slate-700">LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM)</h3>
+        <div class="flex items-center gap-5 pb-4 border-b-2 border-slate-900 mb-6 font-sans">
+            <img src="{{ asset('images/logo-mark.png') }}" alt="Logo USS" class="h-16 w-16 object-contain shrink-0">
+            <div class="flex-1 text-center">
+                <h2 class="text-xl font-bold tracking-tight uppercase text-slate-900">UNIVERSITAS SUMATERA SELATAN</h2>
+                <h3 class="text-sm font-bold uppercase text-slate-700">LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM)</h3>
+                <p class="text-xs text-slate-500 mt-1">Jl. Kolonel H. Barlian No. 12, Palembang, Sumatera Selatan &bull; Surel: lppm@uss.ac.id</p>
+            </div>
         </div>
 
         <div class="text-center mb-6">

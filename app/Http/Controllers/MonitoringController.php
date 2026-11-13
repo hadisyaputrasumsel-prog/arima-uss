@@ -44,11 +44,16 @@ class MonitoringController extends Controller
             'dana_terpakai' => 'required|numeric|min:0',
             'sisa_dana' => 'required|numeric|min:0',
             'file_laporan' => 'required|file|mimes:pdf|max:15360',
+            'file_sptb' => 'nullable|file|mimes:pdf|max:15360',
             'file_dokumentasi' => 'nullable|file|mimes:pdf,zip,jpg,jpeg,png|max:15360',
         ]);
 
         if ($request->hasFile('file_laporan')) {
             $validated['file_laporan'] = $request->file('file_laporan')->store('progress_reports/' . $proposal->id, 'public');
+        }
+
+        if ($request->hasFile('file_sptb')) {
+            $validated['file_sptb'] = $request->file('file_sptb')->store('progress_reports/' . $proposal->id, 'public');
         }
 
         if ($request->hasFile('file_dokumentasi')) {
@@ -95,5 +100,17 @@ class MonitoringController extends Controller
     {
         $proposal->load(['scheme', 'user']);
         return view('monitoring.print_berita_acara', compact('proposal', 'report'));
+    }
+
+    // Print / Generate Lembar SPTB Kemajuan (70%)
+    public function printSptb(Proposal $proposal)
+    {
+        $proposal->load(['scheme', 'user', 'latestProgressReport', 'contract']);
+        $danaTermin1 = ($proposal->dana_disetujui ?? $proposal->total_dana_usulan) * 0.70;
+        $report = $proposal->latestProgressReport;
+        $danaTerpakai = $report ? $report->dana_terpakai : ($danaTermin1 * 0.80);
+        $sisaDana = $report ? $report->sisa_dana : ($danaTermin1 - $danaTerpakai);
+
+        return view('monitoring.print_sptb', compact('proposal', 'report', 'danaTermin1', 'danaTerpakai', 'sisaDana'));
     }
 }

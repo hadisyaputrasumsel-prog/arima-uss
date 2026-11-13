@@ -45,7 +45,11 @@
                     @endif
                 </div>
 
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 shrink-0">
+                    <a href="{{ route('final-reports.print.sptb', $prop) }}" target="_blank" class="px-3 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs shadow-sm flex items-center space-x-1.5" title="Generate & Cetak SPTB Akhir 100%">
+                        <i class="fa-solid fa-file-invoice-dollar text-emerald-600"></i>
+                        <span>SPTB 100%</span>
+                    </a>
                     <a href="{{ route('final-reports.show', $prop) }}" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm whitespace-nowrap">
                         Kelola Laporan Akhir &rarr;
                     </a>

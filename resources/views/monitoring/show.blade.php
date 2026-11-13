@@ -23,6 +23,28 @@
         </p>
     </div>
 
+    <!-- SPTB Kemajuan 70% Quick Action Banner -->
+    <div class="p-5 rounded-2xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-start space-x-3.5">
+            <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 text-amber-400 text-xl">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-500/30 text-blue-200 border border-blue-400/30">
+                    Akuntabilitas Dana 70%
+                </span>
+                <h3 class="text-base font-extrabold text-white mt-1">Surat Pernyataan Tanggung Jawab Belanja (SPTB)</h3>
+                <p class="text-xs text-blue-200 mt-0.5 max-w-xl">
+                    Generate otomatis lembar SPTB Kemajuan (Termin I 70%) ber-Kop LPPM USS resmi siap cetak dan bermaterai Rp 10.000.
+                </p>
+            </div>
+        </div>
+        <a href="{{ route('monitoring.print.sptb', $proposal) }}" target="_blank" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 font-extrabold text-xs rounded-xl shadow-md transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-print"></i>
+            <span>Generate & Cetak SPTB (70%)</span>
+        </a>
+    </div>
+
     <!-- Riwayat Laporan Kemajuan & Berita Acara -->
     @if($proposal->progressReports->isNotEmpty())
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
@@ -37,9 +59,17 @@
                         {{ strtoupper($report->status_monev) }}
                     </span>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 flex-wrap gap-y-1">
                     <a href="{{ asset('storage/' . $report->file_laporan) }}" target="_blank" class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-blue-600 font-bold hover:bg-slate-100">
                         <i class="fa-solid fa-file-pdf text-rose-600 mr-1"></i> Berkas Laporan
+                    </a>
+                    @if($report->file_sptb)
+                    <a href="{{ asset('storage/' . $report->file_sptb) }}" target="_blank" class="px-3 py-1 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 font-bold hover:bg-amber-100">
+                        <i class="fa-solid fa-stamp text-amber-600 mr-1"></i> SPTB 70% (Unggahan)
+                    </a>
+                    @endif
+                    <a href="{{ route('monitoring.print.sptb', $proposal) }}" target="_blank" class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold hover:bg-slate-100">
+                        <i class="fa-solid fa-print text-blue-600 mr-1"></i> Cetak Lembar SPTB
                     </a>
                     @if($report->status_monev === 'approved')
                     <a href="{{ route('monitoring.print.ba', [$proposal, $report]) }}" target="_blank" class="px-3 py-1 bg-slate-800 text-white rounded-lg font-bold hover:bg-slate-900">
@@ -138,14 +168,32 @@
                     class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl leading-relaxed">{{ old('ringkasan_kemajuan') }}</textarea>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Berkas Laporan Kemajuan (PDF, maks 15MB)</label>
-                    <input type="file" name="file_laporan" accept=".pdf" required class="block w-full text-slate-500 file:mr-2 file:py-2 file:px-3 file:rounded-xl file:border-0 file:bg-blue-600 file:text-white">
+                    <label class="block font-bold text-slate-700 mb-1">
+                        1. Berkas Laporan Kemajuan <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="file" name="file_laporan" accept=".pdf" required class="block w-full text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700">
+                    <p class="text-[10px] text-slate-400 mt-1">PDF maks 15MB sesuai format Lampiran 6</p>
                 </div>
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Dokumentasi Foto / Bukti Lapangan (PDF/ZIP, Opsional)</label>
-                    <input type="file" name="file_dokumentasi" accept=".pdf,.zip,.jpg,.jpeg,.png" class="block w-full text-slate-500 file:mr-2 file:py-2 file:px-3 file:rounded-xl file:border-0 file:bg-slate-700 file:text-white">
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block font-bold text-slate-700">
+                            2. Scan SPTB 70% Bermaterai
+                        </label>
+                        <a href="{{ route('monitoring.print.sptb', $proposal) }}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold">
+                            <i class="fa-solid fa-print"></i> Cetak Draf
+                        </a>
+                    </div>
+                    <input type="file" name="file_sptb" accept=".pdf" class="block w-full text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700">
+                    <p class="text-[10px] text-slate-400 mt-1">PDF scan bertanda tangan & materai Rp 10.000</p>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">
+                        3. Foto / Dokumentasi Lapangan
+                    </label>
+                    <input type="file" name="file_dokumentasi" accept=".pdf,.zip,.jpg,.jpeg,.png" class="block w-full text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
+                    <p class="text-[10px] text-slate-400 mt-1">PDF, ZIP, atau JPG (Opsional)</p>
                 </div>
             </div>
 

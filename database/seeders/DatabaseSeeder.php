@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Create Users for all roles
         $adminTi = User::create([
-            'name' => 'Administrator TI USS',
-            'email' => 'admin.ti@uss.ac.id',
+            'name' => 'Admin Sistem',
+            'email' => 'admin@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'admin_ti',
             'nidn' => '0001019001',
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $adminLppm = User::create([
-            'name' => 'LPPM Universitas Sumatera Selatan',
+            'name' => 'Pengelola LPPM USS',
             'email' => 'lppm@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'admin_lppm',
@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $dosen1 = User::create([
-            'name' => 'Dr. Ahmad Fauzi, M.Kom.',
+            'name' => 'Ubaidillah, M.Kom',
             'email' => 'dosen1@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'dosen',
@@ -62,11 +62,11 @@ class DatabaseSeeder extends Seeder
             'no_hp' => '081377889901',
             'bank_name' => 'Bank Sumsel Babel',
             'bank_account_number' => '1400982711',
-            'bank_account_holder' => 'Ahmad Fauzi',
+            'bank_account_holder' => 'Ubaidillah',
         ]);
 
         $dosen2 = User::create([
-            'name' => 'Siti Rahma, S.T., M.T.',
+            'name' => 'Ruswa Dwipa, M.M.',
             'email' => 'dosen2@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'dosen',
@@ -78,11 +78,11 @@ class DatabaseSeeder extends Seeder
             'no_hp' => '081377889902',
             'bank_name' => 'Bank Mandiri',
             'bank_account_number' => '1130018827162',
-            'bank_account_holder' => 'Siti Rahma',
+            'bank_account_holder' => 'Ruswa Dwipa',
         ]);
 
         $reviewer1 = User::create([
-            'name' => 'Prof. Dr. Hendra Wijaya, M.Sc.',
+            'name' => 'Prof. Dr. M. Taufik Roseno, M.Kom',
             'email' => 'reviewer1@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'reviewer',
@@ -95,20 +95,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $reviewer2 = User::create([
-            'name' => 'Dr. Nurul Hidayati, M.Si.',
+            'name' => 'Dr. Hadi Syaputra, S.Kom., M.Kom.',
             'email' => 'reviewer2@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'reviewer',
             'nidn' => '0218118003',
             'nip' => '198011182005012003',
             'jabatan_fungsional' => 'Lektor Kepala',
-            'fakultas' => 'Ekonomi dan Bisnis',
-            'program_studi' => 'Manajemen',
+            'fakultas' => 'Ilmu Komputer',
+            'program_studi' => 'Sistem Informasi',
             'no_hp' => '08127345678',
         ]);
 
         $keuangan = User::create([
-            'name' => 'Bagian Keuangan USS',
+            'name' => 'Bendahara Hibah',
             'email' => 'keuangan@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'keuangan',
@@ -121,8 +121,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $pimpinan = User::create([
-            'name' => 'Prof. Dr. Ir. M. Yusuf, M.T. (Wakil Rektor I)',
-            'email' => 'pimpinan@uss.ac.id',
+            'name' => 'Wakil Rektor I',
+            'email' => 'wr1@uss.ac.id',
             'password' => Hash::make('password'),
             'role' => 'pimpinan',
             'nidn' => '0209076801',

@@ -21,6 +21,7 @@ class FinalReport extends Model
         'total_realisasi_dana',
         'kendala_rekomendasi',
         'file_laporan_akhir',
+        'file_sptb',
         'status_validasi',
         'catatan_validasi',
         'validated_by',

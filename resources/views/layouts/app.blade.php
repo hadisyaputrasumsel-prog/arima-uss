@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'ARIMA') - Universitas Sumatera Selatan</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,13 +60,11 @@
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
                 <a href="{{ route('dashboard') }}" class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-blue-500/20">
-                        A
-                    </div>
+                    <img src="{{ asset('images/logo-mark.png') }}" alt="Logo LPPM USS" class="h-10 w-10 object-contain drop-shadow-sm">
                     <div>
                         <div class="flex items-center space-x-2">
                             <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-800 to-indigo-700 bg-clip-text text-transparent">ARIMA</span>
-                            <span class="text-xs px-2 py-0.5 font-bold uppercase rounded bg-blue-100 text-blue-800 border border-blue-200">USS</span>
+                            <span class="text-xs px-2 py-0.5 font-bold uppercase rounded bg-teal-50 text-teal-800 border border-teal-200">LPPM USS</span>
                         </div>
                         <p class="text-[11px] text-slate-500 leading-none hidden sm:block">Aplikasi Riset Internal & Pengabdian kepada Masyarakat</p>
                     </div>
@@ -95,50 +94,57 @@
                         <a href="{{ route('quick.login', 3) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 3 ? 'bg-blue-50 font-semibold' : '' }}">
                             <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center mr-2.5 font-bold">1</div>
                             <div>
-                                <div class="text-slate-800">Dr. Ahmad Fauzi</div>
+                                <div class="text-slate-800">Ubaidillah, M.Kom</div>
                                 <div class="text-[11px] text-slate-500">Ketua Pengusul (Dosen)</div>
                             </div>
                         </a>
                         <a href="{{ route('quick.login', 4) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 4 ? 'bg-blue-50 font-semibold' : '' }}">
                             <div class="w-7 h-7 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mr-2.5 font-bold">2</div>
                             <div>
-                                <div class="text-slate-800">Siti Rahma, M.T.</div>
+                                <div class="text-slate-800">Ruswa Dwipa, M.M.</div>
                                 <div class="text-[11px] text-slate-500">Anggota Tim / Dosen</div>
                             </div>
                         </a>
                         <a href="{{ route('quick.login', 5) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 5 ? 'bg-blue-50 font-semibold' : '' }}">
                             <div class="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center mr-2.5 font-bold">3</div>
                             <div>
-                                <div class="text-slate-800">Prof. Dr. Hendra Wijaya</div>
+                                <div class="text-slate-800">Prof. Dr. M. Taufik Roseno, M.Kom</div>
                                 <div class="text-[11px] text-slate-500">Reviewer Internal 1</div>
                             </div>
                         </a>
-                        <a href="{{ route('quick.login', 2) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 2 ? 'bg-blue-50 font-semibold' : '' }}">
-                            <div class="w-7 h-7 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mr-2.5 font-bold">4</div>
+                        <a href="{{ route('quick.login', 6) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 6 ? 'bg-blue-50 font-semibold' : '' }}">
+                            <div class="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center mr-2.5 font-bold">4</div>
                             <div>
-                                <div class="text-slate-800">LPPM USS</div>
-                                <div class="text-[11px] text-slate-500">Admin Pengelola LPPM</div>
+                                <div class="text-slate-800">Dr. Hadi Syaputra, S.Kom., M.Kom.</div>
+                                <div class="text-[11px] text-slate-500">Reviewer Internal 2</div>
+                            </div>
+                        </a>
+                        <a href="{{ route('quick.login', 2) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 2 ? 'bg-blue-50 font-semibold' : '' }}">
+                            <div class="w-7 h-7 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mr-2.5 font-bold">5</div>
+                            <div>
+                                <div class="text-slate-800">Pengelola LPPM USS</div>
+                                <div class="text-[11px] text-slate-500">Admin LPPM</div>
                             </div>
                         </a>
                         <a href="{{ route('quick.login', 7) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 7 ? 'bg-blue-50 font-semibold' : '' }}">
-                            <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mr-2.5 font-bold">5</div>
+                            <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mr-2.5 font-bold">6</div>
                             <div>
-                                <div class="text-slate-800">Bagian Keuangan</div>
-                                <div class="text-[11px] text-slate-500">Pencairan Dana (70% & 30%)</div>
+                                <div class="text-slate-800">Bendahara Hibah</div>
+                                <div class="text-[11px] text-slate-500">Bagian Keuangan</div>
                             </div>
                         </a>
                         <a href="{{ route('quick.login', 8) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 8 ? 'bg-blue-50 font-semibold' : '' }}">
-                            <div class="w-7 h-7 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center mr-2.5 font-bold">6</div>
+                            <div class="w-7 h-7 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center mr-2.5 font-bold">7</div>
                             <div>
-                                <div class="text-slate-800">Prof. Dr. Ir. M. Yusuf (WR I)</div>
+                                <div class="text-slate-800">Wakil Rektor I</div>
                                 <div class="text-[11px] text-slate-500">Pimpinan Universitas</div>
                             </div>
                         </a>
                         <a href="{{ route('quick.login', 1) }}" class="flex items-center px-3 py-2 text-xs hover:bg-slate-50 transition {{ Auth::id() == 1 ? 'bg-blue-50 font-semibold' : '' }}">
-                            <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center mr-2.5 font-bold">7</div>
+                            <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center mr-2.5 font-bold">8</div>
                             <div>
-                                <div class="text-slate-800">Administrator TI</div>
-                                <div class="text-[11px] text-slate-500">Admin Sistem & TI</div>
+                                <div class="text-slate-800">Admin Sistem</div>
+                                <div class="text-[11px] text-slate-500">Administrator TI</div>
                             </div>
                         </a>
                     </div>
@@ -238,12 +244,6 @@
                     <span>Laporan Akhir & Luaran</span>
                 </a>
 
-                <!-- Tahap 13: Arsip & Rekapitulasi Data -->
-                <a href="{{ route('reports.index') }}" class="flex items-center px-3 py-2.5 rounded-lg font-medium transition {{ request()->routeIs('reports.*') ? 'bg-blue-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
-                    <i class="fa-solid fa-table-list w-5 text-center mr-3 text-slate-400 {{ request()->routeIs('reports.*') ? 'text-white' : '' }}"></i>
-                    <span>Rekap & Laporan BKD</span>
-                </a>
-
                 @if(Auth::user()->isAdminTi() || Auth::user()->isAdminLppm())
                 <div class="pt-3 pb-1">
                     <p class="px-3 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Administrasi Sistem</p>
@@ -255,9 +255,12 @@
                 @endif
             </nav>
 
-            <div class="p-4 border-t border-slate-800 text-xs text-slate-400">
-                <div class="font-bold text-slate-300">ARIMA v1.0</div>
-                <div>LPPM Universitas Sumatera Selatan</div>
+            <div class="p-4 border-t border-slate-800 text-xs text-slate-400 flex items-center space-x-3">
+                <img src="{{ asset('images/logo-mark.png') }}" alt="LPPM USS" class="h-8 w-8 object-contain opacity-90 brightness-110">
+                <div>
+                    <div class="font-bold text-slate-300">ARIMA USS v1.0</div>
+                    <div class="text-[11px] text-slate-400">LPPM Universitas Sumatera Selatan</div>
+                </div>
             </div>
         </aside>
 

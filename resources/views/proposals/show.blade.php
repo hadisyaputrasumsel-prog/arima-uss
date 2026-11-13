@@ -502,6 +502,25 @@
             <h3 class="font-extrabold text-slate-900 text-base mb-1">Dokumen Pendukung Proposal</h3>
             <p class="text-xs text-slate-500 mb-4">Unggah dokumen format PDF sesuai dengan template resmi LPPM USS (Lampiran 2 & 4).</p>
 
+            <!-- Download Official Template Banner -->
+            <div class="mb-6 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-start space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+                        <i class="fa-solid fa-file-word text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-900">Template Dokumen Resmi LPPM USS (.docx)</h4>
+                        <p class="text-[11px] text-slate-600 mt-0.5">Format baku penyusunan Dokumen Substansi Usulan (Lampiran 2), Surat Kesediaan Mitra (Lampiran 4), serta rincian panduan SOP.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2 shrink-0">
+                    <a href="{{ asset('templates/Lampiran_Formulir_Template_Hibah_Internal.docx') }}" download class="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition inline-flex items-center space-x-2">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Unduh Template (.docx)</span>
+                    </a>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Substansi Usulan (Wajib) -->
                 <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">

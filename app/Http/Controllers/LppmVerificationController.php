@@ -10,17 +10,21 @@ use App\Models\Disbursement;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class LppmVerificationController extends Controller
+class LppmVerificationController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(function ($request, $next) {
-            if (!Auth::user()->isAdminLppm()) {
-                abort(403, 'Akses khusus Admin LPPM.');
-            }
-            return $next($request);
-        });
+        return [
+            new Middleware(function ($request, $next) {
+                if (!Auth::user() || !Auth::user()->isAdminLppm()) {
+                    abort(403, 'Akses khusus Admin LPPM.');
+                }
+                return $next($request);
+            }),
+        ];
     }
 
     // 1. Verifikasi Administrasi (Tahap 3 SOP & SKPL-F-12, F-13)

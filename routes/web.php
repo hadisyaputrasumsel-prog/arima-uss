@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
         Route::post('proposals/{proposal}/progress-report', [MonitoringController::class, 'storeProgressReport'])->name('progress.store');
         Route::post('progress-reports/{report}/evaluate', [MonitoringController::class, 'evaluateMonev'])->name('evaluate');
         Route::get('proposals/{proposal}/progress-reports/{report}/print-ba', [MonitoringController::class, 'printBeritaAcara'])->name('print.ba');
+        Route::get('proposals/{proposal}/print-sptb', [MonitoringController::class, 'printSptb'])->name('print.sptb');
     });
 
     // Laporan Akhir & Validasi Luaran (Tahap 10 & 11 SOP & Lampiran 7 & 8)
@@ -84,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::post('outputs/{output}/update-proof', [FinalReportController::class, 'updateOutputProof'])->name('outputs.update');
         Route::post('final-reports/{report}/validate', [FinalReportController::class, 'validateLuaran'])->name('validate');
         Route::get('proposals/{proposal}/final-reports/{report}/print-ba', [FinalReportController::class, 'printValidasi'])->name('print.ba');
+        Route::get('proposals/{proposal}/print-sptb', [FinalReportController::class, 'printSptb'])->name('print.sptb');
     });
 
     // Arsip & Ekspor Rekap Data (Tahap 13 SOP & SKPL-F-30)

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk - ARIMA USS</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,9 +13,9 @@
 
     <div class="max-w-5xl w-full">
         <!-- Brand Header -->
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-extrabold text-3xl shadow-xl shadow-blue-500/30 mb-3">
-                A
+        <div class="text-center mb-8 flex flex-col items-center">
+            <div class="inline-flex items-center justify-center p-3 sm:px-6 sm:py-3.5 rounded-2xl bg-white shadow-2xl shadow-blue-950/60 mb-4 border border-slate-100">
+                <img src="{{ asset('images/logo.png') }}" alt="LPPM Universitas Sumatera Selatan" class="h-14 sm:h-16 w-auto object-contain">
             </div>
             <h1 class="text-3xl font-extrabold text-white tracking-tight">ARIMA UNIVERSITAS SUMATERA SELATAN</h1>
             <p class="text-blue-200 text-sm mt-1">Aplikasi Riset Internal dan Pengabdian kepada Masyarakat</p>

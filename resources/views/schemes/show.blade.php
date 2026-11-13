@@ -63,6 +63,26 @@
                     <span class="font-semibold text-slate-700">{{ $scheme->tgl_mulai_pengusulan->format('d M Y') }} s.d. {{ $scheme->tgl_akhir_pengusulan->format('d M Y') }}</span>
                 </div>
             </div>
+
+            <div class="pt-3 border-t border-slate-100">
+                <span class="text-slate-400 block mb-2 font-semibold">Dokumen & Template Resmi:</span>
+                <div class="space-y-2">
+                    <a href="{{ asset('templates/Lampiran_Formulir_Template_Hibah_Internal.docx') }}" download class="flex items-center justify-between p-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-800 transition font-medium">
+                        <span class="flex items-center space-x-2">
+                            <i class="fa-solid fa-file-word text-blue-600"></i>
+                            <span>Template Hibah (.docx)</span>
+                        </span>
+                        <i class="fa-solid fa-download text-xs"></i>
+                    </a>
+                    <a href="{{ asset('templates/SOP_Hibah_Internal_Penelitian_Pengabdian.docx') }}" download class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 transition font-medium">
+                        <span class="flex items-center space-x-2">
+                            <i class="fa-solid fa-book text-slate-600"></i>
+                            <span>Buku SOP Hibah (.docx)</span>
+                        </span>
+                        <i class="fa-solid fa-download text-xs"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -7,17 +7,21 @@ use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(function ($request, $next) {
-            if (!Auth::user()->isAdminTi() && !Auth::user()->isAdminLppm()) {
-                abort(403, 'Akses khusus Admin TI / LPPM.');
-            }
-            return $next($request);
-        });
+        return [
+            new Middleware(function ($request, $next) {
+                if (!Auth::user() || (!Auth::user()->isAdminTi() && !Auth::user()->isAdminLppm())) {
+                    abort(403, 'Akses khusus Admin TI / LPPM.');
+                }
+                return $next($request);
+            }),
+        ];
     }
 
     public function index()

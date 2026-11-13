@@ -17,6 +17,7 @@ class ProgressReport extends Model
         'dana_terpakai',
         'sisa_dana',
         'file_laporan',
+        'file_sptb',
         'file_dokumentasi',
         'status_monev',
         'rekomendasi_monev',

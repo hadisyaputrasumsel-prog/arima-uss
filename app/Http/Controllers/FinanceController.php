@@ -7,18 +7,22 @@ use App\Models\Proposal;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class FinanceController extends Controller
+class FinanceController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(function ($request, $next) {
-            $user = Auth::user();
-            if (!$user->isKeuangan() && !$user->isAdminLppm()) {
-                abort(403, 'Akses terbatas untuk Bagian Keuangan.');
-            }
-            return $next($request);
-        });
+        return [
+            new Middleware(function ($request, $next) {
+                $user = Auth::user();
+                if (!$user || (!$user->isKeuangan() && !$user->isAdminLppm())) {
+                    abort(403, 'Akses terbatas untuk Bagian Keuangan.');
+                }
+                return $next($request);
+            }),
+        ];
     }
 
     public function index()

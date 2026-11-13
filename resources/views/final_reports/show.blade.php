@@ -23,6 +23,28 @@
         </p>
     </div>
 
+    <!-- SPTB Akhir 100% Quick Action Banner -->
+    <div class="p-5 rounded-2xl bg-gradient-to-r from-emerald-950 via-teal-900 to-slate-900 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-start space-x-3.5">
+            <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/20 text-emerald-400 text-xl">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-200 border border-emerald-400/30">
+                    Akuntabilitas Dana 100%
+                </span>
+                <h3 class="text-base font-extrabold text-white mt-1">Surat Pernyataan Tanggung Jawab Belanja (SPTB Akhir)</h3>
+                <p class="text-xs text-emerald-200 mt-0.5 max-w-xl">
+                    Generate otomatis lembar SPTB Akhir (Realisasi 100%) ber-Kop LPPM USS siap cetak dan bermaterai Rp 10.000 untuk syarat pelunasan Termin II (30%).
+                </p>
+            </div>
+        </div>
+        <a href="{{ route('final-reports.print.sptb', $proposal) }}" target="_blank" class="px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold text-xs rounded-xl shadow-md transition flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-print"></i>
+            <span>Generate & Cetak SPTB (100%)</span>
+        </a>
+    </div>
+
     <!-- Daftar Bukti Luaran Wajib -->
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
         <h3 class="font-extrabold text-slate-900 text-base border-b border-slate-100 pb-2">Status & Bukti Ketercapaian Luaran Wajib</h3>
@@ -109,9 +131,17 @@
                         {{ $final->status_validasi_label }}
                     </span>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 flex-wrap gap-y-1">
                     <a href="{{ asset('storage/' . $final->file_laporan_akhir) }}" target="_blank" class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-blue-600 font-bold hover:bg-slate-100">
-                        <i class="fa-solid fa-file-pdf text-rose-600 mr-1"></i> Dokumen Laporan Akhir
+                        <i class="fa-solid fa-file-pdf text-rose-600 mr-1"></i> Dokumen Laporan
+                    </a>
+                    @if($final->file_sptb)
+                    <a href="{{ asset('storage/' . $final->file_sptb) }}" target="_blank" class="px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800 font-bold hover:bg-emerald-100">
+                        <i class="fa-solid fa-stamp text-emerald-600 mr-1"></i> SPTB 100% (Unggahan)
+                    </a>
+                    @endif
+                    <a href="{{ route('final-reports.print.sptb', $proposal) }}" target="_blank" class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold hover:bg-slate-100">
+                        <i class="fa-solid fa-print text-emerald-600 mr-1"></i> Lembar SPTB
                     </a>
                     @if($final->status_validasi === 'valid')
                     <a href="{{ route('final-reports.print.ba', [$proposal, $final]) }}" target="_blank" class="px-3 py-1 bg-slate-800 text-white rounded-lg font-bold hover:bg-slate-900">
@@ -227,9 +257,26 @@
                 <textarea name="kendala_rekomendasi" rows="2" placeholder="Catatan kendala dan prospek riset/pengabdian masa depan..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl">{{ old('kendala_rekomendasi') }}</textarea>
             </div>
 
-            <div>
-                <label class="block font-bold text-slate-700 mb-1">Berkas Dokumen Laporan Akhir (PDF Lengkap, maks 20MB)</label>
-                <input type="file" name="file_laporan_akhir" accept=".pdf" required class="block w-full text-slate-500 file:mr-2 file:py-2 file:px-3 file:rounded-xl file:border-0 file:bg-blue-600 file:text-white">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">
+                        1. Dokumen Laporan Akhir (PDF Lengkap, maks 20MB) <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="file" name="file_laporan_akhir" accept=".pdf" required class="block w-full text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700">
+                    <p class="text-[10px] text-slate-400 mt-1">Sesuai sistematika Lampiran 7 SOP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block font-bold text-slate-700">
+                            2. Scan SPTB Akhir 100% Bermaterai
+                        </label>
+                        <a href="{{ route('final-reports.print.sptb', $proposal) }}" target="_blank" class="text-[10px] text-emerald-700 hover:underline font-bold">
+                            <i class="fa-solid fa-print"></i> Cetak Draf
+                        </a>
+                    </div>
+                    <input type="file" name="file_sptb" accept=".pdf" class="block w-full text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-emerald-600 file:text-white hover:file:bg-emerald-700">
+                    <p class="text-[10px] text-slate-400 mt-1">PDF scan bertanda tangan & materai Rp 10.000</p>
+                </div>
             </div>
 
             <div class="pt-4 border-t border-slate-100 flex items-center justify-end">
