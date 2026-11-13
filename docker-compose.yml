@@ -9,13 +9,13 @@ services:
     container_name: arima_app
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-8080}:80"
+      - "8085:80"
     environment:
       APP_NAME: "${APP_NAME:-ARIMA Universitas Sumatera Selatan}"
       APP_ENV: "${APP_ENV:-production}"
       APP_KEY: "${APP_KEY}"
       APP_DEBUG: "${APP_DEBUG:-false}"
-      APP_URL: "${APP_URL:-http://localhost:8080}"
+      APP_URL: "${APP_URL:-http://localhost:8085}"
       DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: 3306
@@ -42,7 +42,7 @@ services:
     volumes:
       - arima_db_data:/var/lib/mysql
     ports:
-      - "${DB_PORT_EXPOSED:-33066}:3306"
+      - "33067:3306"
 
 volumes:
   arima_storage:
