@@ -28,14 +28,12 @@ services:
     volumes:
       - arima_storage:/var/www/html/storage/app/public
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
   db:
     image: mysql:8.0
     container_name: arima_db
     restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: "${DB_DATABASE:-arima_db}"
       MYSQL_USER: "${DB_USERNAME:-arima_user}"
@@ -45,11 +43,6 @@ services:
       - arima_db_data:/var/lib/mysql
     ports:
       - "${DB_PORT_EXPOSED:-33066}:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
 
 volumes:
   arima_storage:

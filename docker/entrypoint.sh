@@ -14,16 +14,19 @@ chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 # Wait for MySQL database if DB_HOST is set
 if [ -n "$DB_HOST" ]; then
     echo "Waiting for database connection at $DB_HOST:${DB_PORT:-3306}..."
-    for i in {1..30}; do
-        if mysqladmin ping -h"$DB_HOST" -P"${DB_PORT:-3306}" -u"${DB_USERNAME}" -p"${DB_PASSWORD}" --silent; then
-            echo "Database is ready!"
+    max_tries=30
+    count=0
+    until php -r "try { new PDO('mysql:host=' . getenv('DB_HOST') . ';port=' . (getenv('DB_PORT') ?: 3306) . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); exit(0); } catch (Throwable \$e) { exit(1); }"; do
+        count=$((count + 1))
+        if [ $count -ge $max_tries ]; then
+            echo "Database connection check reached max tries ($max_tries). Continuing..."
             break
         fi
-        echo "Waiting for database to be ready ($i/30)..."
+        echo "Waiting for database to be ready ($count/$max_tries)..."
         sleep 2
     done
 
-    echo "Running database migrations..."
+    echo "Database is accessible! Running migrations..."
     php artisan migrate --force
 
     if [ "$RUN_SEEDERS" = "true" ]; then
