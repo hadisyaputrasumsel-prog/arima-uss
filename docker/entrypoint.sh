@@ -4,6 +4,11 @@ set -e
 # Run package discovery now that runtime environment is available
 php artisan package:discover --ansi || true
 
+# Ensure APP_KEY exists
+if [ -z "$APP_KEY" ]; then
+    php artisan key:generate --force || true
+fi
+
 # Ensure storage symlink exists
 php artisan storage:link --force || true
 

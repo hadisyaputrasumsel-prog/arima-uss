@@ -13,7 +13,7 @@ services:
     environment:
       APP_NAME: "${APP_NAME:-ARIMA Universitas Sumatera Selatan}"
       APP_ENV: "${APP_ENV:-production}"
-      APP_KEY: "${APP_KEY}"
+      APP_KEY: "${APP_KEY:-base64:Jl2/BUqJ/yBGqgtjsf1wdG7m1TpJYTzh3jJtGe77ri0=}"
       APP_DEBUG: "${APP_DEBUG:-false}"
       APP_URL: "${APP_URL:-http://localhost:8085}"
       DB_CONNECTION: mysql
