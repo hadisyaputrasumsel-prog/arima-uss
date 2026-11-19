@@ -31,7 +31,7 @@ services:
       - db
 
   db:
-    image: mysql:8.0
+    image: mariadb:10.11
     container_name: arima_db
     restart: unless-stopped
     environment:
