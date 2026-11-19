@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: arima-uss:latest
+    image: arima-uss:v2
     container_name: arima_app
     restart: unless-stopped
     ports:
